@@ -1,10 +1,39 @@
 ---
 title: "Untitled"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2023-09-20"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+usethis::use_git_config(user.name = "QianyuanHuang", user.email = "qh2283@cumc.columbia.edu")
+```
+```{r}
+usethis::create_github_token()
+```
+```{r}
+gitcreds::gitcreds_set()
+```
+```{r}
+install.packages("moderndive")
+```
+
+```{r}
+library(moderndive)
+library(ggplot2)
+data("early_january_weather")
+early_january_weather
+str(early_january_weather)
+nrow(early_january_weather)
+ncol(early_january_weather)
+mean(early_january_weather$temp)
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
+
+
 ```
 
