@@ -1,8 +1,8 @@
 ---
 title: "Untitled"
 output:
-  pdf_document: default
-  html_document: default
+  github_document: default
+
 date: "2023-09-20"
 ---
 
@@ -10,22 +10,12 @@ date: "2023-09-20"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-usethis::use_git_config(user.name = "QianyuanHuang", user.email = "qh2283@cumc.columbia.edu")
-```
-```{r}
-usethis::create_github_token()
-```
-```{r}
-gitcreds::gitcreds_set()
-```
-```{r}
-install.packages("moderndive")
-```
+
 
 ```{r}
 library(moderndive)
 library(ggplot2)
+library(tidyverse)
 data("early_january_weather")
 early_january_weather
 str(early_january_weather)
@@ -33,7 +23,23 @@ nrow(early_january_weather)
 ncol(early_january_weather)
 mean(early_january_weather$temp)
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
+ggsave("scatter_plot.pdf", height = 4, width = 6)
+#Discription: The dataset contain 358 rows, 15 columns, and with the mean temperature of 39.58. Within these 15 variables there is "temp", which represents the temperature (in degrees Fahrenheit) observed at that hour. There is "humid", which represents the humidity level observed at that hour. there is "time_hour", which represents the specific hour of observation. There is "Wind_speed", which represents the wind speed observed at that hour.
+```
+```{r}
+library(tidyverse)
 
-
+a = rnorm(10)
+df <- data.frame(
+  a,
+  logical_vector = a > 0,
+  char_vector    = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  factor_vector  = factor(rep(1:3, length.out = 10))
+)
+print(df)
+mean_numeric <- mean(pull(df, a))
+mean_numeric
+mean_logical <- mean(pull(df, logical_vector))
+mean_logical
 ```
 
